@@ -16,6 +16,9 @@
     <a :href="linkHref" :title="imageAlt">
       <img :src="imageSrc" :alt="imageAlt" width="400" height="400">
     </a>
+    <p v-if="inStock">In Stock</p>
+    <p v-else>Out Of Stock</p>
+    <span v-show="onSale">“On Sale!”</span>
   </div>
   <script src="index.js"></script>
 </body>
