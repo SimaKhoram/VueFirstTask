@@ -13,6 +13,9 @@
   <div id="app">
     <h1>{{ product }}</h1>
     <p>{{ description }}</p>
+    <a :href="linkHref" :title="imageAlt">
+      <img :src="imageSrc" :alt="imageAlt" width="400" height="400">
+    </a>
   </div>
   <script src="index.js"></script>
 </body>
