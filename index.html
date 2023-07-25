@@ -12,7 +12,7 @@
 
 <body>
   <div id="app">
-    <h1>{{ product }}</h1>
+    <h1>{{ title }}</h1>
     <p>{{ description }}</p>
     <a :href="linkHref" :title="imageAlt">
       <img :src="imageSrc" :alt="imageAlt" width="400" height="400">
@@ -21,15 +21,15 @@
     <p v-else :class="{ outOfStockText: !inStock }">
       Out Of Stock
     </p>
-    <span v-show="onSale">“On Sale!”</span>
+    <span v-if="onSale">{{ title }}</span>
     <ul>
       <li v-for="detail in details">{{ detail }}</li>
     </ul>
     <div  class="color_box"
-          v-for="variant in variants" 
+          v-for="(variant, index) in variants" 
           :key="variant.variantId"
           :style="{ backgroundColor: variant.variantColor }"
-          @mouseover="updateProduct(variant.variantImage)"
+          @mouseover="updateProduct(index)"
           >
     </div>
     <ul>
