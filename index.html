@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue Tasks</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
@@ -17,21 +18,35 @@
       <img :src="imageSrc" :alt="imageAlt" width="400" height="400">
     </a>
     <p v-if="inStock">In Stock</p>
-    <p v-else>Out Of Stock</p>
+    <p v-else :class="{ outOfStockText: !inStock }">
+      Out Of Stock
+    </p>
     <span v-show="onSale">“On Sale!”</span>
     <ul>
       <li v-for="detail in details">{{ detail }}</li>
     </ul>
-    <div v-for="variant in variants" :key="variant.variantId">
-      <p @mouseover="updateProduct(variant.variantImage)">
-        {{ variant.variantColor }}
-      </p>
+    <div  class="color_box"
+          v-for="variant in variants" 
+          :key="variant.variantId"
+          :style="{ backgroundColor: variant.variantColor }"
+          @mouseover="updateProduct(variant.variantImage)"
+          >
     </div>
     <ul>
       <li v-for="size in sizes">{{ size }}</li>
     </ul>
-    <button v-on:click="addToCart">Add to Cart</button>
-    <button v-on:click="removeFromCart">Remove from Cart</button>
+    <button v-on:click="addToCart" 
+            :disabled="!inStock"
+            :class="{ disabledButton: !inStock }"
+            >
+            Add to Cart
+    </button>
+    <button v-on:click="removeFromCart"
+            :disabled="!inStock"
+            :class="{ disabledButton: !inStock }"
+            >
+            Remove from Cart
+    </button>
     <div class="cart">
       <p>Cart({{cart}})</p>
     </div>

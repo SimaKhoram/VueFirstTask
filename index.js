@@ -6,7 +6,7 @@ var app = new Vue({
     imageSrc: './assets/vmSocks-green.png',
     imageAlt: 'A pair of socks',
     linkHref: 'https://www.vuemastery.com/courses/intro-to-vue-js/attribute-binding',
-    inStock: true,
+    inStock: false,
     onSale: true,
     details: ['80% cotton', '20% polyester', 'Gender-neutral'],
     variants: [
