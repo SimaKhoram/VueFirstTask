@@ -1,4 +1,3 @@
-
 Vue.component('product', {
   props: {
     premium: {
@@ -42,9 +41,6 @@ Vue.component('product', {
             >
             Remove from Cart
     </button>
-    <div class="cart">
-      <p>Cart({{cart}})</p>
-    </div>
   </div>
   `,
   data() {
@@ -70,16 +66,15 @@ Vue.component('product', {
         },
       ],
       sizes: ['S', 'M', 'L', 'XL'],
-      cart: 0,
       onSale: true,
     }
   },
   methods: {
     addToCart() {
-      this.cart += 1
+      this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
     },
     removeFromCart() {
-      this.cart -= 1;
+      this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
     },
     updateProduct(index) {
       this.selectedVariant = index
@@ -127,6 +122,15 @@ Vue.component('product-details', {
 var app = new Vue({
   el: '#app',
   data: {
-    premium: true
+    premium: true,
+    cart: [],
+  },
+  methods: {
+    updateCart(id) {
+      this.cart.push(id)
+    },
+    removeProduct(id) {
+      this.cart.pop(id)
+    }
   }
 })
