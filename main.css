@@ -21,3 +21,8 @@ button {
 .outOfStockText {
     text-decoration: line-through;
 }
+
+.activeTab{
+    color: #39b982;
+    border-bottom: 2px solid #39b982;
+}
